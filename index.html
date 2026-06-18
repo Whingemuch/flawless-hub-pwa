@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#729b9f">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Flawless Hub">
   <link rel="manifest" href="manifest.json">
@@ -48,14 +49,28 @@
   </style>
 </head>
 <body>
-  <!-- Production Web App URL: replace the iframe src below with your deployed Google Apps Script Web App URL (…/exec) -->
+
+  <!-- Google Workspace Login Banner -->
+  <div id="login-banner" style="position: fixed; bottom: 0; width: 100vw; background: #1e1e24; border-top: 2px solid #4285F4; color: white; text-align: center; padding: 20px 10px; z-index: 9999; font-family: sans-serif; box-sizing: border-box; box-shadow: 0px -5px 15px rgba(0,0,0,0.5);">
+    <p style="margin-top: 0; margin-bottom: 15px; font-size: 14px;">Grey screen? Authorize your Flawless Cabinets account to view the dashboard.</p>
+    
+    <a href="https://script.google.com/a/macros/flawlesscabinets.com.au/s/AKfycbwa854HE0Rwp1pNPVkDqpzwvr9fBKTVSaMPb2xQWG2d4OT1gVprPxT03FEBDKmh-67p/exec" target="_blank" style="background: #4285F4; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-right: 10px; display: inline-block;">1. Log In</a>
+    
+    <button onclick="location.reload()" style="background: #34A853; color: white; border: none; padding: 11px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-right: 10px;">2. Reload App</button>
+    
+    <button onclick="document.getElementById('login-banner').style.display='none'" style="background: transparent; color: #aaa; border: 1px solid #aaa; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Dismiss</button>
+  </div>
+
+  <!-- Main App Frame -->
   <iframe
     id="flawlessHubFrame"
     title="Flawless Hub"
-    src="about:blank"
-    style="width: 100vw; height: 100vh; border: none;"
+    src="https://script.google.com/a/macros/flawlesscabinets.com.au/s/AKfycbwa854HE0Rwp1pNPVkDqpzwvr9fBKTVSaMPb2xQWG2d4OT1gVprPxT03FEBDKmh-67p/exec"
+    style="width: 100vw; height: 100vh; border: none; overflow: hidden;"
     allow="geolocation; clipboard-read; clipboard-write"
-  <iframe src="https://script.google.com/a/macros/flawlesscabinets.com.au/s/AKfycbwa854HE0Rwp1pNPVkDqpzwvr9fBKTVSaMPb2xQWG2d4OT1gVprPxT03FEBDKmh-67p/exec" style="width: 100vw; height: 100vh; border: none; overflow: hidden;" scrolling="yes"></iframe>
+    scrolling="yes">
+  </iframe>
+
   <script>
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("./sw.js").catch(function () {});
